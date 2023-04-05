@@ -1,0 +1,2 @@
+# sickperson_Registration_System
+mini_python
