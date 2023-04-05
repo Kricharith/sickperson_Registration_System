@@ -1,0 +1,65 @@
+from tkinter import *
+from datetime import date
+from tkinter import filedialog
+from tkinter import messagebox
+from PIL import Image, ImageTk
+import os
+from tkinter.ttk import Combobox
+import openpyxl,xlrd
+from openpyxl import Workbook
+import pathlib
+
+framebg="#EDEDED"
+framefg="#06283D"
+
+root =Tk()
+root.title("ระบบบันทึกข้อมูลผู้ป่วย")
+img =Image.open('D:\\sickperson_Registration_System\\Images\\back1.png')
+bg = ImageTk.PhotoImage(img)
+root.geometry("1250x700+210+100")
+#root.config(bg=background)
+
+
+file=pathlib.Path('sickperson_data.xlsx')
+if file.exists():
+    pass
+else:
+    file=Workbook()
+    sheet=file.active
+    sheet['A1']="Registration No."
+    sheet['B1']="Name"
+    sheet['C1']="Class"
+    sheet['D1']="Gender"
+    sheet['E1']="DOB"
+    sheet['F1']="Date Of Registration"
+    sheet['G1']="Religion"
+    sheet['H1']="Skill"
+    sheet['I1']="father Name"
+    sheet['J1']="Mother Name"
+    sheet['K1']="Father's Occupation"
+    sheet['L1']="Mother's Occupation"
+    
+    file.save('sickperson_data.xlsx')
+    
+# Add image
+label = Label(root, image=bg)
+label.place(x = 0,y = 0)
+#top frames
+Label(root,text="Email: jack12688jack@gmail.com",width=10,height=3,bg="#f0687C",anchor='e').pack(side=TOP,fill=X)
+Label(root,text="บันทึกข้อมูลนักเรียน",width=10,height=2,bg="#c36464",fg='#fff',font='arial 25 bold').pack(side=TOP,fill=X)
+
+#search box to update
+Search = StringVar()
+Entry(root,textvariable=Search,width=15,bd=2,font="arial 25").place(x=800,y=70)
+
+imageicon3=PhotoImage(file="Images/Search2.png")
+Srch=Button(root,text="Search",compound=LEFT,image=imageicon3,width=123,bg='#68ddfa',font="arial 13 bold")
+Srch.place(x=1090,y=66)
+
+imageicon4=PhotoImage(file="Images/Refresh.png")
+Update_button=Button(root,image=imageicon4,bg="#c36464")
+Update_button.place(x=110,y=64)        
+
+
+root.mainloop()
+
